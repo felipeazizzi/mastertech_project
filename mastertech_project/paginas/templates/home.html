@@ -1,0 +1,28 @@
+<!-- templates/home.html -->
+{% extends '_base.html' %}
+
+{% block  title %}Home{% endblock title %}
+
+{% block content %}
+
+<div class="container-fluid mt-0">
+{%if user.is_authenticated %}
+	<div class="alert alert-success alert-dismissible">
+	<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+		Olá {{user.email}}!
+	</div>
+{%else%}
+	<div class="alert alert-info alert-dismissible">
+	 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+		Voce nao esta logado!!
+	</div>
+</div>
+{% endif %}
+<div class="container-fluid pt-5">
+<h1>Pesquisar Livros</h1>
+<form class="form-inline mt-2 mt-md-0" action="{% url 'search_results' %}" method="get">
+	<input name="q" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+</form>
+</div>
+
+{% endblock content %}
